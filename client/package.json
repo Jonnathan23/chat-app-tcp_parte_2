@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Frontend de la pagina de chat con socket tcp",
+  "main": "./src/main.js",
+  "scripts": {
+    "dev": "electron .",
+    "docs": "jsdoc -c jsdoc.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonnathan Saquiela",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^33.2.1"
+  },
+  "dependencies": {
+    "jsdoc": "^4.0.4"
+  }
+}

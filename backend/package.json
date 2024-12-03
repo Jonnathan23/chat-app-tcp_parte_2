@@ -1,0 +1,16 @@
+{
+  "name": "servidor-chat",
+  "version": "1.0.0",
+  "description": "elaboracion del backend de la aplicacion de chat con tcp",
+  "main": "index.js",
+  "scripts": {
+    "docs": "jsdoc -c jsdoc.json",
+    "dev": "node --watch ./src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonnathan Saquicela",
+  "license": "ISC",
+  "dependencies": {
+    "jsdoc": "^4.0.4"
+  }
+}

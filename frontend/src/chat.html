@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+    
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Hello World!</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="title">
+                <h1>Sistemas Distribuidos</h1>
+            </div>
+
+            <section class="info">
+                <h4>Práctica Socktes</h4>
+                <p>Jonanthan Saquicela</p>
+            </section>
+        </header>
+
+        <main class="main--chat">
+            <div class="cont--chat">
+                <section class="cont--messages">
+                    <h3 class="messages--title">Mi chat</h3>
+                    <ul class="cont--text" id="listMessages">
+                    </ul>
+                </section>
+
+                <form id="myForm" class="form">
+                    <input id="message" class="form--text" type="text" name="message" required
+                        placeholder="Escribe un mensaje" />
+                    <input class="form--button" type="submit" value="Enviar">
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="cont--footer">
+                <section class="copyright">
+                    <h6>Elaborado</h6>
+                    <p>Jonnathan Saquicela 10-30-2024</p>
+                </section>
+            </div>
+        </footer>
+    </div>
+    <script src="js/chat.js"></script>
+
+</body>
+
+</html>

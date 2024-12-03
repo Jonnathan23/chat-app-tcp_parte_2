@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="title">
+                <h1>Sistemas Distribuidos</h1>
+            </div>
+
+            <section class="info">
+                <h4>Práctica Socktes</h4>
+                <p>Jonnathan Saquicela</p>
+            </section>
+
+        </header>
+
+        <main class="main--index">
+            <div class="cont--index">
+                <section class="users cont--field">
+                    <h3 class="users--title">Mi App</h3>
+                    <p class="users--text">Visita mi repositorio GitHub</p>
+                    <div class="us">
+                        <a href="https://github.com/Jonnathan23/chat-app-tcp">Chat</a>
+                    </div>
+                </section>
+
+                <section class="log cont--field">
+                    <h2>Bienvenido</h2>
+                    <form id="loginForm">
+                        <div class="field">
+                            <label for="username">Usuario</label>
+                            <input id="username" name="username" type="text" placeholder="Nombre de usuario">
+                        </div>
+                        <input class="form--button" type="submit" value="Ingresar">
+                    </form>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="cont--footer">
+                <section class="copyright">
+                    <h6>Elaborado</h6>
+                    <p>Jonnathan Saquicela 11-29-2024</p>
+                </section>
+            </div>
+        </footer>
+</div>
+    <script src="js/login.js"></script>    
+</body>
+
+</html>
