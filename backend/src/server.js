@@ -44,8 +44,8 @@ const decrypt = (encryptedText) => {
 
 /**
  * @description Enviar un mensaje a todos los clientes excepto el origen
- * @param {*} message --> mensaje de socket
- * @param {*} origin  --> Socket origen
+ * @param {*} message -> mensaje de socket
+ * @param {*} origin  -> Socket origen
  */
 const sendMessage = (message, origin) => {
     for (const socket of connections.keys()) {
