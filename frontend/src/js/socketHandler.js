@@ -32,8 +32,7 @@ const setupSocketEvents = (socket, onMessageReceived) => {
     // Evento 'data' recibe un mensaje del servidor
     socket.on('data', (data) => {
 
-        console.log('  -- data:', data);                
-        console.log(`onMessageReceived ? ${onMessageReceived !== null}`);
+        console.log('  -- data:', data.toString());                        
 
         if (onMessageReceived) onMessageReceived(data.toString());
 
