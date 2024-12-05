@@ -8,13 +8,6 @@ Este proyecto implementa un sistema de comunicación basado en una arquitectura 
 * Reconexión Automática: Los clientes intentan reconectarse automáticamente en caso de desconexión.
 * Interfaz Gráfica Amigable: Desarrollada con Electron para facilitar la interacción de los usuarios
 
-## Documentacion del código
-### Servidor
-[Documentacion Servidor](https://documentacion-servidor-saquicela.netlify.app/)
-
-### Cliente
-[Documentacion del Cliente](https://documentancion-frontend-saquicela.netlify.app/)
-
 ## Tecnologías y configariones implementadas
 ### Servidor
 * Node.js v20
