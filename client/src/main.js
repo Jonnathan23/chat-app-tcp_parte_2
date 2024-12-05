@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const { connectToServer, sendMessage, setUsername } = require('./js/socketHandler.js');
+const { setTimeout } = require('timers/promises');
 
 
 /**
@@ -24,11 +25,10 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
     createWindow()
-    connectToServer((message) => {
-        const mainWindow = BrowserWindow.getAllWindows()[0];
-        if (mainWindow) {
-            mainWindow.webContents.send('receive-message', message);
-        }
+    connectToServer((message) => {        
+        const mainWindow = BrowserWindow.getAllWindows()[0];       
+
+        mainWindow && mainWindow.webContents.send('receive-message', message)
     });
 
     // Enviar mensajes al servidor
@@ -37,5 +37,5 @@ app.whenReady().then(() => {
     // Configurar el nombre de usuario
     ipcMain.on('set-username', (_, user) => setUsername(user));
 
-    
+
 })
