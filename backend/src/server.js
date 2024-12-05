@@ -1,4 +1,4 @@
-const { encrypt, decrypt } = require('./encryption.js');
+
 const { Server } = require('net');
 const server = new Server();
 
@@ -14,15 +14,17 @@ const sendMessage = (message, autorMessage) => {
     for (const [username, user] of users.entries()) {
 
         if (user.socket !== autorMessage) {
+
             if (user.socket && !user.socket.destroyed) {
-                // Cliente activo: enviar el mensaje                
-                const encryptMessage = encrypt(message);
-                user.socket.write(encryptMessage);
+                // Cliente activo: enviar el mensaje  
+                console.log(`message: ${message}`)
+                user.socket.write(message);
             } else {
                 // Cliente desconectado: guardar mensaje en la cola
                 if (!user.originQueue) {
                     user.originQueue = autorMessage; // Registrar quién envió el mensaje
                 }
+                console.log(message)
                 user.queue.push(message); // Guardar mensaje en cola
 
             }
@@ -41,7 +43,7 @@ server.on('connection', (socket) => {
 
         if (!connections.has(socket)) {
             // Nuevo cliente: registro inicial
-            const username = decrypt(message.trim());
+            const username = message.trim()
 
             connections.set(socket, username);
 
@@ -52,7 +54,6 @@ server.on('connection', (socket) => {
                 // Usuario existente: reconexiónc
                 const user = users.get(username);
                 user.socket = socket; // Actualizar socket
-
 
                 setTimeout(() => {
                     const originSocket = user.originQueue;
@@ -67,15 +68,14 @@ server.on('connection', (socket) => {
             // Cliente termina la conexión            
             socket.end();
         } else {
-            // Mensaje recibido de un cliente activo
-            const decryptedMessage = decrypt(message.trim());
-            const fullMessage = `${connections.get(socket)}: ${decryptedMessage}`;
+            // Mensaje recibido de un cliente activo                        
+            const fullMessage = `${connections.get(socket)}: ${message.trim()}`;
             sendMessage(fullMessage, socket);
         }
     });
 
     socket.on('close', () => {
-        const username = connections.get(socket);       
+        const username = connections.get(socket);
 
         if (username) {
             const user = users.get(username);

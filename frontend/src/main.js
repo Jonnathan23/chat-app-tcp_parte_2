@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const { connectToServer, sendMessage, setUsername } = require('./js/socketHandler.js');
+const { setTimeout } = require('timers/promises');
 
 
 /**
@@ -24,15 +25,10 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
     createWindow()
-    connectToServer((message) => {
-        console.log(`Mensaje recibido del servidor en el proceso principal: ${message}`);
-        const mainWindow = BrowserWindow.getAllWindows()[0];
-        if (mainWindow) {
-            console.log(`Enviando mensaje al renderer: ${message}`);
-            mainWindow.webContents.send('receive-message', message);
-        } else {
-            console.error('No se encontró una ventana activa para enviar el mensaje.');
-        }
+    connectToServer((message) => {        
+        const mainWindow = BrowserWindow.getAllWindows()[0];       
+
+        mainWindow && mainWindow.webContents.send('receive-message', message)
     });
 
     // Enviar mensajes al servidor

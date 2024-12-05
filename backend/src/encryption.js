@@ -1,8 +1,9 @@
 const crypto = require('crypto');
 
 // Clave secreta y algoritmo de encriptación
-const SECRET_KEY = '12345678901234567890123456789012'; // 32 caracteres
+const SECRET_KEY = '12345678901234567890123456789012';
 const ALGORITHM = 'aes-256-ctr';
+
 
 /**
  * @description Encriptar un mensaje

@@ -1,6 +1,5 @@
 // socketHandler.js
 const { Socket } = require('net');
-const { encrypt, decrypt } = require('./encryption.js'); // Asegúrate de usar la ruta correcta
 
 let socket;
 let username = '';
@@ -33,11 +32,10 @@ const setupSocketEvents = (socket, onMessageReceived) => {
     // Evento 'data' recibe un mensaje del servidor
     socket.on('data', (data) => {
 
-        const decryptedMessage = decrypt(data.toString());
-        console.log('  -- Mensaje en el socketHandler.js:', decryptedMessage);
+        console.log('  -- data:', data);                
         console.log(`onMessageReceived ? ${onMessageReceived !== null}`);
 
-        if (onMessageReceived) onMessageReceived(decryptedMessage);
+        if (onMessageReceived) onMessageReceived(data.toString());
 
 
     });
@@ -66,9 +64,8 @@ const connectToServer = (onMessageReceived) => {
         socket = new Socket();
         socket.connect({ host: 'localhost', port: portHost }, () => {
             console.log('Conectado al servidor');
-            if (username) {
-                const encryptedUsername = encrypt(username);
-                socket.write(encryptedUsername);
+            if (username) {                
+                socket.write(username);
             }
         });
 
@@ -84,9 +81,8 @@ const connectToServer = (onMessageReceived) => {
  * @param {string} message - Mensaje a enviar
  */
 const sendMessage = (message) => {
-    if (socket && !socket.destroyed) {
-        const encryptedMessage = encrypt(message);
-        socket.write(encryptedMessage);
+    if (socket && !socket.destroyed) {        
+        socket.write(message);
     } else {
         console.error('Socket no está conectado o está destruido');
     }
@@ -98,9 +94,8 @@ const sendMessage = (message) => {
  */
 const setUsername = (user) => {
     username = user;
-    if (socket && !socket.destroyed) {
-        const encryptedUsername = encrypt(user);
-        socket.write(encryptedUsername);
+    if (socket && !socket.destroyed) {        
+        socket.write(user);
     }
 };
 
