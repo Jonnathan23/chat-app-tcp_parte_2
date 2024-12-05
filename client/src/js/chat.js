@@ -15,8 +15,7 @@ const handleSubmit = (e) => {
     e.target.message.value = '';
 };
 
-const addMessageToList = (message, classStyle) => {
-    console.log('Añadiendo mensaje a la lista...');
+const addMessageToList = (message, classStyle) => {    
     const li = document.createElement('li');
     li.classList.add(classStyle);
     li.textContent = message;
@@ -24,15 +23,6 @@ const addMessageToList = (message, classStyle) => {
     console.log(`Mensaje añadido al DOM: ${message}`);
 };
 
-window.electron.onMessage((message) => {
-    try {
-        setTimeout(() => {},0)
-        console.log(' - RENDER:')
-        addMessageToList(`${message}`, classOther);
-        
-    } catch (error) {
-        console.log(error)
-    }
-});
+window.electron.onMessage((message) => addMessageToList(`${message}`, classOther));
 
 form.addEventListener('submit', handleSubmit);

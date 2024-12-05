@@ -32,9 +32,14 @@ const setupSocketEvents = (socket, onMessageReceived) => {
 
     // Evento 'data' recibe un mensaje del servidor
     socket.on('data', (data) => {
+
         const decryptedMessage = decrypt(data.toString());
         console.log('  -- Mensaje en el socketHandler.js:', decryptedMessage);
+        console.log(`onMessageReceived ? ${onMessageReceived !== null}`);
+
         if (onMessageReceived) onMessageReceived(decryptedMessage);
+
+
     });
 
     socket.on('error', (err) => {
@@ -70,7 +75,7 @@ const connectToServer = (onMessageReceived) => {
         setupSocketEvents(socket, onMessageReceived);
     } catch (error) {
         console.error('Error al conectar al servidor:', error);
-        
+
     }
 };
 
@@ -98,5 +103,7 @@ const setUsername = (user) => {
         socket.write(encryptedUsername);
     }
 };
+
+
 
 module.exports = { connectToServer, sendMessage, setUsername };
