@@ -27,7 +27,7 @@ app.whenReady().then(() => {
     createWindow()
     connectToServer((message) => {        
         const mainWindow = BrowserWindow.getAllWindows()[0];       
-
+        console.log('message: ', message)
         mainWindow && mainWindow.webContents.send('receive-message', message)
     });
 

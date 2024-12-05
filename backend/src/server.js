@@ -24,7 +24,6 @@ const sendMessage = (message, autorMessage) => {
                 if (!user.originQueue) {
                     user.originQueue = autorMessage; // Registrar quién envió el mensaje
                 }
-                console.log(message)
                 user.queue.push(message); // Guardar mensaje en cola
 
             }
@@ -54,10 +53,14 @@ server.on('connection', (socket) => {
                 // Usuario existente: reconexiónc
                 const user = users.get(username);
                 user.socket = socket; // Actualizar socket
+                const originSocket = user.originQueue;
 
                 setTimeout(() => {
-                    const originSocket = user.originQueue;
-                    user.queue.forEach((msg) => sendMessage(msg, originSocket));
+                    // Enviar mensajes pendientes
+                    user.queue.forEach((msg) => {
+                        console.log(user.queue)
+                        sendMessage(msg, originSocket)
+                    });
 
                     user.queue = [];
                     user.originQueue = null
