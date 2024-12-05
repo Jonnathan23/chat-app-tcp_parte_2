@@ -25,9 +25,13 @@ const createWindow = () => {
 app.whenReady().then(() => {
     createWindow()
     connectToServer((message) => {
+        console.log(`Mensaje recibido del servidor en el proceso principal: ${message}`);
         const mainWindow = BrowserWindow.getAllWindows()[0];
         if (mainWindow) {
+            console.log(`Enviando mensaje al renderer: ${message}`);
             mainWindow.webContents.send('receive-message', message);
+        } else {
+            console.error('No se encontró una ventana activa para enviar el mensaje.');
         }
     });
 
@@ -37,5 +41,5 @@ app.whenReady().then(() => {
     // Configurar el nombre de usuario
     ipcMain.on('set-username', (_, user) => setUsername(user));
 
-    
+
 })

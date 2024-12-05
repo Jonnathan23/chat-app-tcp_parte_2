@@ -33,7 +33,7 @@ const setupSocketEvents = (socket, onMessageReceived) => {
     // Evento 'data' recibe un mensaje del servidor
     socket.on('data', (data) => {
         const decryptedMessage = decrypt(data.toString());
-        console.log('Mensaje del servidor:', decryptedMessage);
+        console.log('  -- Mensaje en el socketHandler.js:', decryptedMessage);
         if (onMessageReceived) onMessageReceived(decryptedMessage);
     });
 
